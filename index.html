@@ -206,37 +206,43 @@
             display: flex; flex-direction: column; gap: 1.4rem; justify-content: center;
         }
         #archive .archive-videos .video-block { display: flex; flex-direction: column; gap: 0.5rem; }
-        #archive .archive-videos .video-lbl {
+        #archive .video-lbl {
             font-size: 0.72rem; font-weight: 700; color: var(--point-color);
             letter-spacing: 0.1em; text-transform: uppercase;
         }
-        #archive .archive-videos a { text-decoration: none; display: block; }
-        #archive .archive-videos .v-thumb {
+        /* ⭐ v-thumb 계열 스타일을 #archive 내 모든 위치에 적용 (tl-card-media 안에서도 작동) */
+        #archive a { text-decoration: none; }
+        #archive .v-thumb {
             position: relative; border-radius: 10px; overflow: hidden;
             aspect-ratio: 16/9; background: #1a1a2e;
+            max-width: 480px;     /* 영상 미리보기 화면 폭 상한 — 지나치게 커지지 않도록 */
+            width: 100%;
+            display: block;
         }
-        #archive .archive-videos .v-thumb img {
+        #archive .v-thumb img {
             width: 100%; height: 100%; object-fit: cover; display: block;
             transition: transform 0.4s ease;
         }
-        #archive .archive-videos a:hover .v-thumb img { transform: scale(1.04); }
-        #archive .archive-videos .v-overlay {
+        #archive a:hover .v-thumb img { transform: scale(1.04); }
+        #archive .v-overlay {
             position: absolute; inset: 0;
             background: rgba(0,0,0,0.32);
             display: flex; align-items: center; justify-content: center;
             transition: background 0.25s;
+            pointer-events: none;
         }
-        #archive .archive-videos a:hover .v-overlay { background: rgba(0,0,0,0.5); }
-        #archive .archive-videos .v-play {
+        #archive a:hover .v-overlay { background: rgba(0,0,0,0.5); }
+        #archive .v-play {
             width: 46px; height: 46px; border-radius: 50%;
             background: rgba(243,198,35,0.9);
             display: flex; align-items: center; justify-content: center;
             transition: transform 0.2s;
+            flex-shrink: 0;
         }
-        #archive .archive-videos a:hover .v-play { transform: scale(1.12); }
-        #archive .archive-videos .v-play svg { width: 20px; height: 20px; fill: #111; margin-left: 3px; }
-        #archive .archive-videos .v-caption {
-            font-size: 0.78rem; color: #888; margin-top: 4px;
+        #archive a:hover .v-play { transform: scale(1.12); }
+        #archive .v-play svg { width: 20px; height: 20px; fill: #111; margin-left: 3px; display: block; }
+        #archive .v-caption {
+            font-size: 0.78rem; color: #888; margin-top: 6px;
         }
         #archive .archive-connect {
             margin-top: 40px; text-align: center;
@@ -634,9 +640,9 @@
         ====================================================== -->
         <section id="archive">
             <div class="archive-header">
-                <div class="archive-badge">⚓ 전작 아카이브 2024 – 2025</div>
-                <h2 class="archive-title-main">2026 〈더블앵커〉는<br>2024년 개인전 〈나다 'NADA'〉에서<br>시작됐습니다.</h2>
-                <p class="archive-intro">
+                <div class="archive-badge" data-i18n="arc_badge">⚓ 전작 아카이브 2024 – 2025</div>
+                <h2 class="archive-title-main" data-i18n="arc_title">2026 〈더블앵커〉는<br>2024년 개인전 〈나다 'NADA'〉에서<br>시작됐습니다.</h2>
+                <p class="archive-intro" data-i18n="arc_intro">
                     구멍 난 잎사귀 아단의 이야기는 2024년 작가의 개인적인 고백에서 시작됐습니다.
                     숲에서, 무대에서, 그리고 이주배경 청소년들 사이에서 점점 더 넓어진
                     그 이야기의 여정을 따라가 보세요.
@@ -654,32 +660,32 @@
                     </div>
                     <div class="tl-card tl-card-24">
                         <div class="tl-card-info">
-                            <p class="tl-tag tl-tag-24">개인전 · 로프트그라운드</p>
-                            <h3 class="tl-title">나다 'NADA'</h3>
+                            <p class="tl-tag tl-tag-24" data-i18n="arc24_tag">개인전 · 로프트그라운드</p>
+                            <h3 class="tl-title" data-i18n="arc24_title">나다 'NADA'</h3>
                             <div class="tl-meta">
-                                <div class="tl-meta-row"><span>📅</span><span>2024년 4월 14일 ~ 20일</span></div>
-                                <div class="tl-meta-row"><span>📍</span><span>서울 로프트그라운드(Loft Ground)</span></div>
-                                <div class="tl-meta-row"><span>🎨</span><span>체험전시 · 설치미술 · 빛 그림 조명</span></div>
-                                <div class="tl-meta-row"><span>✍️</span><span>작가 우수정 (아단ADAN 첫 개인전)</span></div>
+                                <div class="tl-meta-row"><span>📅</span><span data-i18n="arc24_date">2024년 4월 14일 ~ 20일</span></div>
+                                <div class="tl-meta-row"><span>📍</span><span data-i18n="arc24_loc">서울 로프트그라운드(Loft Ground)</span></div>
+                                <div class="tl-meta-row"><span>🎨</span><span data-i18n="arc24_type">체험전시 · 설치미술 · 빛 그림 조명</span></div>
+                                <div class="tl-meta-row"><span>✍️</span><span data-i18n="arc24_artist">작가 우수정 (아단ADAN 첫 개인전)</span></div>
                             </div>
-                            <p class="tl-desc">
+                            <p class="tl-desc" data-i18n="arc24_desc">
                                 바닥으로 떨어져 주저앉은 어느 날 만난, 구멍 뚫린 잎사귀 하나.
                                 그 잎이 '나다(NADA)' — '바로 나'임을 발견하는 빛 그림 설치 개인전.
                                 글라스고보와 빛 투사로 연출된 수백 개의 아단 잎 그림자가
                                 관람객의 얼굴과 공간을 덮는 몰입형 체험 전시입니다.
                             </p>
                             <div class="tl-btn-row">
-                                <a class="tl-drive-btn" href="https://drive.google.com/drive/folders/1zVaXo0Db-JOD9YsBruLBeeOIMqbNIfVv" target="_blank" rel="noopener">📂 전시 사진 아카이브</a>
+                                <a class="tl-drive-btn" href="https://drive.google.com/drive/folders/1zVaXo0Db-JOD9YsBruLBeeOIMqbNIfVv" target="_blank" rel="noopener" data-i18n="arc24_drive">📂 전시 사진 아카이브</a>
                             </div>
                         </div>
                         <div class="tl-card-media">
-                            <p class="tl-media-lbl">▶ 전시 영상</p>
+                            <p class="tl-media-lbl" data-i18n="arc24_vlbl">▶ 전시 영상</p>
                             <a href="https://youtu.be/2ybWxtEwOCg" target="_blank" rel="noopener">
                                 <div class="v-thumb">
-                                    <img src="https://img.youtube.com/vi/2ybWxtEwOCg/hqdefault.jpg" alt="나다 NADA 전시 영상" loading="lazy"/>
+                                    <img src="https://img.youtube.com/vi/2ybWxtEwOCg/hqdefault.jpg" onerror="this.style.display='none'" alt="나다 NADA 전시 영상" loading="lazy"/>
                                     <div class="v-overlay"><div class="v-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
                                 </div>
-                                <p class="v-caption">나다(NADA) — 바로 나의 이야기</p>
+                                <p class="v-caption" data-i18n="arc24_vcap">나다(NADA) — 바로 나의 이야기</p>
                             </a>
                             <div class="tl-photo-grid">
                                 <a href="https://drive.google.com/drive/folders/1d2nOr6WA32sZmK01AjjZbgvAQukqJDt7" target="_blank" rel="noopener">
@@ -707,41 +713,41 @@
                     </div>
                     <div class="tl-card tl-card-25a">
                         <div class="tl-card-info">
-                            <p class="tl-tag tl-tag-25a">🌿 경기상상캠퍼스 숲숲학교 협력단체</p>
-                            <h3 class="tl-title">송송뽕뽕 구멍난 아단</h3>
-                            <p class="tl-subtitle">아단과 함께하는 빛 그림 놀이</p>
+                            <p class="tl-tag tl-tag-25a" data-i18n="arc25a_tag">🌿 경기상상캠퍼스 숲숲학교 협력단체</p>
+                            <h3 class="tl-title" data-i18n="arc25a_title">송송뽕뽕 구멍난 아단</h3>
+                            <p class="tl-subtitle" data-i18n="arc25a_subtitle">아단과 함께하는 빛 그림 놀이</p>
                             <div class="tl-meta">
-                                <div class="tl-meta-row"><span>📅</span><span>2025년 6월 ~ 11월 (숲숲학교 시즌)</span></div>
-                                <div class="tl-meta-row"><span>📍</span><span>경기도 수원시 경기상상캠퍼스</span></div>
-                                <div class="tl-meta-row"><span>👶</span><span>유아·초등학생 가족 대상</span></div>
-                                <div class="tl-meta-row"><span>🌿</span><span>숲 생태감수성 × 빛 그림 놀이 융합 예술교육</span></div>
+                                <div class="tl-meta-row"><span>📅</span><span data-i18n="arc25a_date">2025년 6월 ~ 11월 (숲숲학교 시즌)</span></div>
+                                <div class="tl-meta-row"><span>📍</span><span data-i18n="arc25a_loc">경기도 수원시 경기상상캠퍼스</span></div>
+                                <div class="tl-meta-row"><span>👶</span><span data-i18n="arc25a_target">유아·초등학생 가족 대상</span></div>
+                                <div class="tl-meta-row"><span>🌿</span><span data-i18n="arc25a_type">숲 생태감수성 × 빛 그림 놀이 융합 예술교육</span></div>
                             </div>
-                            <p class="tl-desc">
+                            <p class="tl-desc" data-i18n="arc25a_desc">
                                 경기상상캠퍼스의 숲 속에서 아단의 '구멍 난 잎'을 직접 만들고
                                 빛을 통과시키는 체험 예술교육 프로그램.
                                 글라스고보와 OHP 필름으로 나만의 빛 그림을 제작하고,
                                 구멍이 빛을 나누는 통로임을 놀이 속에서 자연스럽게 발견합니다.
                             </p>
                             <div class="tl-btn-row">
-                                <a class="tl-drive-btn" href="https://drive.google.com/drive/folders/1ER-4A0KXIiDLdHOGC2wWtKuhd8-Ck1e_" target="_blank" rel="noopener">📂 프로그램 사진 아카이브</a>
+                                <a class="tl-drive-btn" href="https://drive.google.com/drive/folders/1ER-4A0KXIiDLdHOGC2wWtKuhd8-Ck1e_" target="_blank" rel="noopener" data-i18n="arc25a_drive">📂 프로그램 사진 아카이브</a>
                             </div>
                         </div>
                         <div class="tl-card-media">
-                            <p class="tl-media-lbl">▶ 하이라이트</p>
+                            <p class="tl-media-lbl" data-i18n="arc25a_vlbl1">▶ 하이라이트</p>
                             <a href="https://youtu.be/rXC3rcf-xB0" target="_blank" rel="noopener">
                                 <div class="v-thumb">
-                                    <img src="https://img.youtube.com/vi/rXC3rcf-xB0/hqdefault.jpg" alt="송송뽕뽕 하이라이트" loading="lazy"/>
+                                    <img src="https://img.youtube.com/vi/rXC3rcf-xB0/hqdefault.jpg" onerror="this.style.display='none'" alt="송송뽕뽕 하이라이트" loading="lazy"/>
                                     <div class="v-overlay"><div class="v-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
                                 </div>
-                                <p class="v-caption">숲 속 빛 그림 놀이 하이라이트</p>
+                                <p class="v-caption" data-i18n="arc25a_vcap1">숲 속 빛 그림 놀이 하이라이트</p>
                             </a>
-                            <p class="tl-media-lbl" style="margin-top:14px;">▶ 공연발표 풀영상</p>
+                            <p class="tl-media-lbl" style="margin-top:14px;" data-i18n="arc25a_vlbl2">▶ 공연발표 풀영상</p>
                             <a href="https://youtu.be/OdYwTbwq1GM" target="_blank" rel="noopener">
                                 <div class="v-thumb">
-                                    <img src="https://img.youtube.com/vi/OdYwTbwq1GM/hqdefault.jpg" alt="송송뽕뽕 공연발표 풀영상" loading="lazy"/>
+                                    <img src="https://img.youtube.com/vi/OdYwTbwq1GM/hqdefault.jpg" onerror="this.style.display='none'" alt="송송뽕뽕 공연발표 풀영상" loading="lazy"/>
                                     <div class="v-overlay"><div class="v-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
                                 </div>
-                                <p class="v-caption">공연발표 전체 영상</p>
+                                <p class="v-caption" data-i18n="arc25a_vcap2">공연발표 전체 영상</p>
                             </a>
                         </div>
                     </div>
@@ -755,40 +761,40 @@
                     </div>
                     <div class="tl-card tl-card-25b">
                         <div class="tl-card-info">
-                            <p class="tl-tag tl-tag-25b">🏆 2025 모든예술31 화성 선정작</p>
-                            <h3 class="tl-title">아단, 공존의 지혜</h3>
-                            <p class="tl-subtitle">Adan, The Wisdom of Coexistence</p>
+                            <p class="tl-tag tl-tag-25b" data-i18n="arc25b_tag">🏆 2025 모든예술31 화성 선정작</p>
+                            <h3 class="tl-title" data-i18n="arc25b_title">아단, 공존의 지혜</h3>
+                            <p class="tl-subtitle" data-i18n="arc25b_subtitle">Adan, The Wisdom of Coexistence</p>
                             <div class="tl-meta">
-                                <div class="tl-meta-row"><span>📅</span><span>2025년 8월 7일 ~ 8일</span></div>
-                                <div class="tl-meta-row"><span>📍</span><span>경기도 화성시 송린이음터 체육관</span></div>
-                                <div class="tl-meta-row"><span>👶</span><span>초등학교 1~4학년 대상</span></div>
-                                <div class="tl-meta-row"><span>🎭</span><span>참여형 공연 + 체험 전시</span></div>
+                                <div class="tl-meta-row"><span>📅</span><span data-i18n="arc25b_date">2025년 8월 7일 ~ 8일</span></div>
+                                <div class="tl-meta-row"><span>📍</span><span data-i18n="arc25b_loc">경기도 화성시 송린이음터 체육관</span></div>
+                                <div class="tl-meta-row"><span>👶</span><span data-i18n="arc25b_target">초등학교 1~4학년 대상</span></div>
+                                <div class="tl-meta-row"><span>🎭</span><span data-i18n="arc25b_type">참여형 공연 + 체험 전시</span></div>
                             </div>
-                            <p class="tl-desc">
+                            <p class="tl-desc" data-i18n="arc25b_desc">
                                 글라스고보와 그림자 투사로 연출된 빛 그림 속에서
                                 초등학생 관객들이 직접 아단의 이야기가 되는 참여형 공연·전시.
                                 '구멍'이 결핍이 아닌 공존의 통로임을 아이들이 몸으로 체험합니다.
                             </p>
                             <div class="tl-btn-row">
-                                <a class="tl-drive-btn" href="https://drive.google.com/drive/folders/1SY20EubrJtpqSrOPlDgtCvway4aZ5Tm8" target="_blank" rel="noopener">📂 공연·전시 사진 아카이브</a>
+                                <a class="tl-drive-btn" href="https://drive.google.com/drive/folders/1SY20EubrJtpqSrOPlDgtCvway4aZ5Tm8" target="_blank" rel="noopener" data-i18n="arc25b_drive">📂 공연·전시 사진 아카이브</a>
                             </div>
                         </div>
                         <div class="tl-card-media">
-                            <p class="tl-media-lbl">▶ 참여공연</p>
+                            <p class="tl-media-lbl" data-i18n="arc25b_vlbl1">▶ 참여공연</p>
                             <a href="https://youtu.be/9ctJTBCzGW0" target="_blank" rel="noopener">
                                 <div class="v-thumb">
-                                    <img src="https://img.youtube.com/vi/9ctJTBCzGW0/hqdefault.jpg" alt="아단 공존의 지혜 — 참여공연" loading="lazy"/>
+                                    <img src="https://img.youtube.com/vi/9ctJTBCzGW0/hqdefault.jpg" onerror="this.style.display='none'" alt="아단 공존의 지혜 — 참여공연" loading="lazy"/>
                                     <div class="v-overlay"><div class="v-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
                                 </div>
-                                <p class="v-caption">빛과 그림자로 만드는 아단의 이야기</p>
+                                <p class="v-caption" data-i18n="arc25b_vcap1">빛과 그림자로 만드는 아단의 이야기</p>
                             </a>
-                            <p class="tl-media-lbl" style="margin-top:14px;">▶ 체험전시</p>
+                            <p class="tl-media-lbl" style="margin-top:14px;" data-i18n="arc25b_vlbl2">▶ 체험전시</p>
                             <a href="https://youtu.be/2FCBLyBmqkk" target="_blank" rel="noopener">
                                 <div class="v-thumb">
-                                    <img src="https://img.youtube.com/vi/2FCBLyBmqkk/hqdefault.jpg" alt="아단 공존의 지혜 — 체험전시" loading="lazy"/>
+                                    <img src="https://img.youtube.com/vi/2FCBLyBmqkk/hqdefault.jpg" onerror="this.style.display='none'" alt="아단 공존의 지혜 — 체험전시" loading="lazy"/>
                                     <div class="v-overlay"><div class="v-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
                                 </div>
-                                <p class="v-caption">관객이 직접 아단의 세계로</p>
+                                <p class="v-caption" data-i18n="arc25b_vcap2">관객이 직접 아단의 세계로</p>
                             </a>
                         </div>
                     </div>
@@ -800,8 +806,8 @@
                         <div class="tl-year-pill tl-y26">2026 →</div>
                     </div>
                     <div class="tl-end-card">
-                        <p class="tl-end-title">빛 그림 프로젝트 〈더블앵커 Double Anchors〉</p>
-                        <p class="tl-end-desc">
+                        <p class="tl-end-title" data-i18n="arc26_title">빛 그림 프로젝트 〈더블앵커 Double Anchors〉</p>
+                        <p class="tl-end-desc" data-i18n="arc26_desc">
                             개인의 고백 → 숲의 놀이 → 무대의 이야기.<br>
                             2024년 작가의 구멍 난 잎이 2026년
                             <strong>안산의 이주배경 청소년들의 무대</strong>로 자랐습니다.
@@ -927,6 +933,22 @@
                 ex1_n:"우수정", ex1_r:"작가 / 예술감독", ex1_d:"한국예술종합학교 무대미술과를 졸업하고, 다수의 다원예술 및 예술교육 프로젝트를 총괄 기획해 온 예술감독입니다.",
                 ex2_n:"이태용", ex2_r:"기획 / 제작감독", ex2_d:"30년 경력의 베테랑 공연예술 스태프 및 기획자입니다. '극장리우' 대표로서 프로젝트의 무대 완성도와 안전을 책임집니다.",
                 ex3_n:"강민정 · 최다솜", ex3_r:"예술강사", ex3_d:"풍부한 현장 경험을 갖춘 배우이자 교육연극 전문 강사진으로, 아이들의 눈높이에서 따뜻하게 소통하며 교육을 이끕니다.",
+                arc_badge:"⚓ 전작 아카이브 2024 – 2025",
+                arc_title:"2026 〈더블앵커〉는<br>2024년 개인전 〈나다 'NADA'〉에서<br>시작됐습니다.",
+                arc_intro:"구멍 난 잎사귀 아단의 이야기는 2024년 작가의 개인적인 고백에서 시작됐습니다. 숲에서, 무대에서, 그리고 이주배경 청소년들 사이에서 점점 더 넓어진 그 이야기의 여정을 따라가 보세요.",
+                arc24_tag:"개인전 · 로프트그라운드", arc24_title:"나다 'NADA'", arc24_date:"2024년 4월 14일 ~ 20일", arc24_loc:"서울 로프트그라운드(Loft Ground)", arc24_type:"체험전시 · 설치미술 · 빛 그림 조명", arc24_artist:"작가 우수정 (아단ADAN 첫 개인전)",
+                arc24_desc:"바닥으로 떨어져 주저앉은 어느 날 만난, 구멍 뚫린 잎사귀 하나. 그 잎이 '나다(NADA)' — '바로 나'임을 발견하는 빛 그림 설치 개인전. 글라스고보와 빛 투사로 연출된 수백 개의 아단 잎 그림자가 관람객의 얼굴과 공간을 덮는 몰입형 체험 전시입니다.",
+                arc24_drive:"📂 전시 사진 아카이브", arc24_vlbl:"▶ 전시 영상", arc24_vcap:"나다(NADA) — 바로 나의 이야기",
+                arc25a_tag:"🌿 경기상상캠퍼스 숲숲학교 협력단체", arc25a_title:"송송뽕뽕 구멍난 아단", arc25a_subtitle:"아단과 함께하는 빛 그림 놀이",
+                arc25a_date:"2025년 6월 ~ 11월 (숲숲학교 시즌)", arc25a_loc:"경기도 수원시 경기상상캠퍼스", arc25a_target:"유아·초등학생 가족 대상", arc25a_type:"숲 생태감수성 × 빛 그림 놀이 융합 예술교육",
+                arc25a_desc:"경기상상캠퍼스의 숲 속에서 아단의 '구멍 난 잎'을 직접 만들고 빛을 통과시키는 체험 예술교육 프로그램. 글라스고보와 OHP 필름으로 나만의 빛 그림을 제작하고, 구멍이 빛을 나누는 통로임을 놀이 속에서 자연스럽게 발견합니다.",
+                arc25a_drive:"📂 프로그램 사진 아카이브", arc25a_vlbl1:"▶ 하이라이트", arc25a_vcap1:"숲 속 빛 그림 놀이 하이라이트", arc25a_vlbl2:"▶ 공연발표 풀영상", arc25a_vcap2:"공연발표 전체 영상",
+                arc25b_tag:"🏆 2025 모든예술31 화성 선정작", arc25b_title:"아단, 공존의 지혜", arc25b_subtitle:"Adan, The Wisdom of Coexistence",
+                arc25b_date:"2025년 8월 7일 ~ 8일", arc25b_loc:"경기도 화성시 송린이음터 체육관", arc25b_target:"초등학교 1~4학년 대상", arc25b_type:"참여형 공연 + 체험 전시",
+                arc25b_desc:"글라스고보와 그림자 투사로 연출된 빛 그림 속에서 초등학생 관객들이 직접 아단의 이야기가 되는 참여형 공연·전시. '구멍'이 결핍이 아닌 공존의 통로임을 아이들이 몸으로 체험합니다.",
+                arc25b_drive:"📂 공연·전시 사진 아카이브", arc25b_vlbl1:"▶ 참여공연", arc25b_vcap1:"빛과 그림자로 만드는 아단의 이야기", arc25b_vlbl2:"▶ 체험전시", arc25b_vcap2:"관객이 직접 아단의 세계로",
+                arc26_title:"빛 그림 프로젝트 〈더블앵커 Double Anchors〉",
+                arc26_desc:"개인의 고백 → 숲의 놀이 → 무대의 이야기.<br>2024년 작가의 구멍 난 잎이 2026년 <strong>안산의 이주배경 청소년들의 무대</strong>로 자랐습니다.",
                 sec_faq:"자주 묻는 질문 (FAQ)",
                 fq1_q:"한국어를 전혀 못 해도 참여할 수 있나요?", fq1_a:"네, 가능합니다! 본 프로그램은 언어보다 '몸짓'과 '이미지'를 통한 비언어적 표현을 중점적으로 다루기 때문에 한국어가 서툴러도 충분히 즐겁게 참여할 수 있습니다.",
                 fq2_q:"참가비나 별도의 준비물이 있나요?", fq2_a:"아니요, 참가비는 전액 무료이며 교육에 필요한 모든 장비는 주최 측에서 무상으로 제공합니다. 편안한 복장으로 오시면 됩니다.",
@@ -954,6 +976,22 @@
                 ex1_n:"Soojeong Woo", ex1_r:"Art Director", ex1_d:"Directs multimedia arts and education projects.",
                 ex2_n:"Taeyong Lee", ex2_r:"Production Director", ex2_d:"30-year veteran ensuring stage safety and quality.",
                 ex3_n:"Minjeong & Dasom", ex3_r:"Arts Instructors", ex3_d:"Educational theater experts communicating warmly.",
+                arc_badge:"⚓ Archive 2024 – 2025",
+                arc_title:"2026 〈Double Anchors〉 began<br>with the 2024 solo exhibition<br>〈Nada 'NADA'〉.",
+                arc_intro:"The story of Adan's pierced leaf began in 2024 as the artist's personal confession. Follow its journey as it gradually widened — in the forest, on stage, and among migrant-background youths.",
+                arc24_tag:"Solo Exhibition · Loft Ground", arc24_title:"Nada 'NADA'", arc24_date:"April 14 – 20, 2024", arc24_loc:"Loft Ground, Seoul", arc24_type:"Experiential Exhibition · Installation · Light & Shadow", arc24_artist:"Artist Woo Sujeong (ADAN's first solo exhibition)",
+                arc24_desc:"One day, fallen and slumped on the ground, the artist encountered a pierced leaf. That leaf became 'Nada (NADA)' — the discovery that 'this is me.' A solo light-installation exhibition in which hundreds of Adan-leaf shadows, projected via glass gobo and light, cover the faces and space of visitors in an immersive experience.",
+                arc24_drive:"📂 Exhibition Photo Archive", arc24_vlbl:"▶ Exhibition Video", arc24_vcap:"Nada (NADA) — The story of being myself",
+                arc25a_tag:"🌿 Gyeonggi Sangsang Campus Forest School Partner", arc25a_title:"Songsong-Ppongppong, The Pierced Adan", arc25a_subtitle:"Light & Shadow Play with Adan",
+                arc25a_date:"June – November 2025 (Forest School Season)", arc25a_loc:"Gyeonggi Sangsang Campus, Suwon", arc25a_target:"Toddler & Elementary Family Audience", arc25a_type:"Forest Ecological Sensitivity × Light-Shadow Play Arts Education",
+                arc25a_desc:"An experiential arts education program in the forest of Gyeonggi Sangsang Campus, where participants make their own 'pierced leaves' of Adan and let light pass through. Using glass gobos and OHP films, children create their own light-shadow pictures, naturally discovering through play that the holes are channels for sharing light.",
+                arc25a_drive:"📂 Program Photo Archive", arc25a_vlbl1:"▶ Highlight", arc25a_vcap1:"Forest light-shadow play highlights", arc25a_vlbl2:"▶ Full Performance Video", arc25a_vcap2:"Full performance presentation",
+                arc25b_tag:"🏆 2025 Art31 Hwaseong Selected Work", arc25b_title:"Adan, The Wisdom of Coexistence", arc25b_subtitle:"Adan, The Wisdom of Coexistence",
+                arc25b_date:"August 7 – 8, 2025", arc25b_loc:"Songrin Eumter Gym, Hwaseong, Gyeonggi", arc25b_target:"Elementary 1st – 4th Grade Audience", arc25b_type:"Participatory Performance + Experiential Exhibition",
+                arc25b_desc:"An interactive performance & exhibition where elementary-school audiences themselves become part of Adan's story, inside light-shadow scenes created with glass gobos and shadow projection. Children physically experience that 'holes' are not deficits but channels of coexistence.",
+                arc25b_drive:"📂 Performance & Exhibition Photo Archive", arc25b_vlbl1:"▶ Participatory Performance", arc25b_vcap1:"Adan's story made of light and shadow", arc25b_vlbl2:"▶ Experiential Exhibition", arc25b_vcap2:"Audience steps into Adan's world",
+                arc26_title:"Light & Shadow Project 〈Double Anchors〉",
+                arc26_desc:"Personal confession → Forest play → Stage story.<br>The artist's pierced leaf of 2024 has grown into <strong>the 2026 stage of migrant-background youth in Ansan</strong>.",
                 sec_faq:"FAQ",
                 fq1_q:"Is it okay if I don't speak Korean?", fq1_a:"Yes! We focus on non-verbal expressions like gestures and images.",
                 fq2_q:"Is there an entry fee?", fq2_a:"No, it's 100% free. All equipment is provided by the organizer.",
@@ -981,6 +1019,22 @@
                 ex1_n:"У Суджон", ex1_r:"Арт-директор", ex1_d:"Руководит мультимедийными проектами.",
                 ex2_n:"Ли Тэён", ex2_r:"Директор", ex2_d:"Ветеран с 30-летним опытом, отвечает за сцену.",
                 ex3_n:"Минчжон и Дасом", ex3_r:"Преподаватели", ex3_d:"Эксперты по театральному образованию.",
+                arc_badge:"⚓ Архив 2024 – 2025",
+                arc_title:"2026 〈Двойные якоря〉 начались<br>с персональной выставки 2024 года<br>〈Нада 'NADA'〉.",
+                arc_intro:"История дырявого листа Адана началась в 2024 году с личной исповеди художницы. Следуйте за её путём, который постепенно расширялся — в лесу, на сцене и среди подростков с миграционным происхождением.",
+                arc24_tag:"Персональная выставка · Loft Ground", arc24_title:"Нада 'NADA'", arc24_date:"14 – 20 апреля 2024", arc24_loc:"Loft Ground, Сеул", arc24_type:"Иммерсивная выставка · Инсталляция · Световая живопись", arc24_artist:"Художница У Суджон (первая персональная выставка ADAN)",
+                arc24_desc:"Однажды, упав и сев на землю, художница встретила дырявый лист. Этот лист стал 'Надой (NADA)' — открытием 'это я'. Персональная выставка световой инсталляции: сотни теней листьев Адана, созданных стеклянным гобо и световой проекцией, покрывают лица посетителей и пространство в иммерсивном переживании.",
+                arc24_drive:"📂 Архив фотографий выставки", arc24_vlbl:"▶ Видео выставки", arc24_vcap:"Нада (NADA) — история того, кто я есть",
+                arc25a_tag:"🌿 Партнёр Школы леса кампуса Сансан Кёнги", arc25a_title:"Сонгсонг-Ппонгппонг, дырявый Адан", arc25a_subtitle:"Световая игра вместе с Аданом",
+                arc25a_date:"Июнь – ноябрь 2025 (сезон Школы леса)", arc25a_loc:"Кампус Сансан Кёнги, Сувон", arc25a_target:"Малыши и семьи начальной школы", arc25a_type:"Экочувствительность леса × Световая игра — арт-образование",
+                arc25a_desc:"Экспериментальная художественная образовательная программа в лесу кампуса Сансан Кёнги, где дети сами создают 'дырявые листья' Адана и пропускают свет. С помощью стеклянных гобо и OHP-плёнок они создают свои собственные световые картины, естественно открывая в игре, что дырки — каналы для разделения света.",
+                arc25a_drive:"📂 Архив фотографий программы", arc25a_vlbl1:"▶ Хайлайт", arc25a_vcap1:"Хайлайт лесной световой игры", arc25a_vlbl2:"▶ Полное видео выступления", arc25a_vcap2:"Полная видеозапись выступления",
+                arc25b_tag:"🏆 2025 Art31 Хвасон — отобранная работа", arc25b_title:"Адан, Мудрость сосуществования", arc25b_subtitle:"Adan, The Wisdom of Coexistence",
+                arc25b_date:"7 – 8 августа 2025", arc25b_loc:"Спортзал Соннин Ымтер, Хвасон, Кёнги", arc25b_target:"Учащиеся 1–4 классов начальной школы", arc25b_type:"Интерактивный спектакль + Иммерсивная выставка",
+                arc25b_desc:"Интерактивный спектакль и выставка, где дети-зрители сами становятся частью истории Адана в световых сценах, созданных стеклянными гобо и теневыми проекциями. Дети телесно переживают, что 'дырки' — не недостаток, а канал сосуществования.",
+                arc25b_drive:"📂 Архив фотографий спектакля и выставки", arc25b_vlbl1:"▶ Интерактивный спектакль", arc25b_vcap1:"История Адана из света и тени", arc25b_vlbl2:"▶ Иммерсивная выставка", arc25b_vcap2:"Зрители входят в мир Адана",
+                arc26_title:"Проект световой живописи 〈Двойные якоря〉",
+                arc26_desc:"Личное признание → Игра в лесу → История на сцене.<br>Дырявый лист 2024 года вырос в 2026 году в <strong>сцену подростков с миграционным происхождением Ансана</strong>.",
                 sec_faq:"Частые вопросы",
                 fq1_q:"Можно ли без знания корейского?", fq1_a:"Да! Мы используем невербальное общение.",
                 fq2_q:"Это платно?", fq2_a:"Нет, участие полностью бесплатное.",
@@ -1008,6 +1062,22 @@
                 ex1_n:"禹水晶", ex1_r:"艺术总监", ex1_d:"策划多项多元艺术及艺术教育项目。",
                 ex2_n:"李泰容", ex2_r:"制作总监", ex2_d:"拥有30年经验，负责舞台和安全。",
                 ex3_n:"姜敏贞 · 崔多顺", ex3_r:"艺术讲师", ex3_d:"教育戏剧专家，从孩子的视角温暖沟通。",
+                arc_badge:"⚓ 往期档案 2024 – 2025",
+                arc_title:"2026 〈双锚〉<br>始于2024年个人展览<br>〈纳达 'NADA'〉。",
+                arc_intro:"阿丹那片有孔叶子的故事，始于2024年艺术家的个人告白。请追随它的旅程——在森林中、在舞台上、在移民背景青少年之间逐步扩展。",
+                arc24_tag:"个人展览 · Loft Ground", arc24_title:"纳达 'NADA'", arc24_date:"2024年4月14日 – 20日", arc24_loc:"首尔 Loft Ground", arc24_type:"体验展览 · 装置艺术 · 光影绘画", arc24_artist:"艺术家 禹水晶（ADAN首次个人展）",
+                arc24_desc:"某一天倒在地上的艺术家遇见了一片有孔的叶子。这片叶子成为'纳达(NADA)'——发现'这就是我'的光影装置个人展。透过玻璃gobo和光投射所呈现的数百片阿丹叶影，覆盖了观众的脸庞与空间，是一场沉浸式的体验展览。",
+                arc24_drive:"📂 展览照片档案", arc24_vlbl:"▶ 展览影片", arc24_vcap:"纳达(NADA) — 关于我的故事",
+                arc25a_tag:"🌿 京畿想象校园森林学校合作团体", arc25a_title:"嗖嗖咚咚 有孔的阿丹", arc25a_subtitle:"与阿丹一起的光影游戏",
+                arc25a_date:"2025年6月 – 11月（森林学校季节）", arc25a_loc:"京畿道水原市 京畿想象校园", arc25a_target:"幼儿与小学生家庭", arc25a_type:"森林生态敏感性 × 光影游戏 — 融合艺术教育",
+                arc25a_desc:"在京畿想象校园的森林中，亲手制作阿丹的'有孔叶'并让光穿过的体验式艺术教育项目。透过玻璃gobo与OHP胶片制作专属光影画，在游戏中自然发现孔是分享光的通道。",
+                arc25a_drive:"📂 项目照片档案", arc25a_vlbl1:"▶ 精彩瞬间", arc25a_vcap1:"森林光影游戏精彩瞬间", arc25a_vlbl2:"▶ 公演发表全片", arc25a_vcap2:"公演发表全片影像",
+                arc25b_tag:"🏆 2025 Art31 华城入选作", arc25b_title:"阿丹，共存的智慧", arc25b_subtitle:"Adan, The Wisdom of Coexistence",
+                arc25b_date:"2025年8月7日 – 8日", arc25b_loc:"京畿道华城市 松鳞音器体育馆", arc25b_target:"小学1-4年级", arc25b_type:"参与式公演 + 体验展览",
+                arc25b_desc:"在透过玻璃gobo与阴影投射所呈现的光影中，小学生观众亲身成为阿丹故事的参与式公演与展览。孩子们用身体体验'孔'不是缺陷，而是共存的通道。",
+                arc25b_drive:"📂 公演与展览照片档案", arc25b_vlbl1:"▶ 参与式公演", arc25b_vcap1:"以光影编织的阿丹故事", arc25b_vlbl2:"▶ 体验展览", arc25b_vcap2:"观众亲身进入阿丹的世界",
+                arc26_title:"光影项目 〈双锚 Double Anchors〉",
+                arc26_desc:"个人告白 → 森林游戏 → 舞台故事。<br>2024年艺术家那片有孔的叶子，到2026年长成了<strong>安山移民背景青少年的舞台</strong>。",
                 sec_faq:"常见问题",
                 fq1_q:"不会韩语可以参加吗？", fq1_a:"可以！我们侧重于通过手势和图像进行非语言表达。",
                 fq2_q:"需要报名费或准备物品吗？", fq2_a:"不需要，全额免费。",
@@ -1035,6 +1105,22 @@
                 ex1_n:"Soojeong Woo", ex1_r:"Giám đốc Nghệ thuật", ex1_d:"Chỉ đạo các dự án nghệ thuật truyền thông.",
                 ex2_n:"Taeyong Lee", ex2_r:"Giám đốc Sản xuất", ex2_d:"Chuyên gia 30 năm kinh nghiệm đảm bảo an toàn.",
                 ex3_n:"Minjeong & Dasom", ex3_r:"Giảng viên", ex3_d:"Chuyên gia kịch giáo dục giao tiếp ấm áp.",
+                arc_badge:"⚓ Lưu trữ 2024 – 2025",
+                arc_title:"〈Hai Mỏ Neo〉 năm 2026<br>bắt đầu từ triển lãm cá nhân<br>〈Nada 'NADA'〉 năm 2024.",
+                arc_intro:"Câu chuyện về chiếc lá thủng lỗ của Adan bắt đầu vào năm 2024 từ lời tự thú cá nhân của nghệ sĩ. Hãy theo dõi hành trình ấy ngày càng mở rộng — trong rừng, trên sân khấu, và giữa các thanh thiếu niên có nền tảng nhập cư.",
+                arc24_tag:"Triển lãm cá nhân · Loft Ground", arc24_title:"Nada 'NADA'", arc24_date:"14 – 20 tháng 4, 2024", arc24_loc:"Loft Ground, Seoul", arc24_type:"Triển lãm trải nghiệm · Sắp đặt · Ánh sáng & hình bóng", arc24_artist:"Nghệ sĩ Woo Sujeong (Triển lãm cá nhân đầu tiên của ADAN)",
+                arc24_desc:"Một ngày nọ ngã xuống đất, nghệ sĩ gặp một chiếc lá thủng lỗ. Chiếc lá ấy trở thành 'Nada (NADA)' — khám phá rằng 'đây chính là tôi'. Triển lãm sắp đặt ánh sáng cá nhân, nơi hàng trăm bóng lá Adan được chiếu qua gobo thủy tinh và ánh sáng, phủ kín khuôn mặt khán giả và không gian trong một trải nghiệm đắm chìm.",
+                arc24_drive:"📂 Lưu trữ ảnh triển lãm", arc24_vlbl:"▶ Video triển lãm", arc24_vcap:"Nada (NADA) — Câu chuyện chính tôi",
+                arc25a_tag:"🌿 Đối tác Trường Rừng Sangsang Campus Gyeonggi", arc25a_title:"Songsong-Ppongppong, Adan thủng lỗ", arc25a_subtitle:"Trò chơi ánh sáng cùng Adan",
+                arc25a_date:"Tháng 6 – 11, 2025 (Mùa Trường Rừng)", arc25a_loc:"Sangsang Campus Gyeonggi, Suwon", arc25a_target:"Trẻ em & gia đình tiểu học", arc25a_type:"Cảm nhận sinh thái rừng × Trò chơi ánh sáng — giáo dục nghệ thuật",
+                arc25a_desc:"Chương trình giáo dục nghệ thuật trải nghiệm trong rừng Sangsang Campus, nơi các em tự làm 'chiếc lá thủng lỗ' của Adan và cho ánh sáng xuyên qua. Sử dụng gobo thủy tinh và phim OHP, các em tạo nên bức tranh ánh sáng riêng, tự nhiên khám phá trong trò chơi rằng những lỗ thủng là kênh để chia sẻ ánh sáng.",
+                arc25a_drive:"📂 Lưu trữ ảnh chương trình", arc25a_vlbl1:"▶ Khoảnh khắc nổi bật", arc25a_vcap1:"Khoảnh khắc nổi bật trò chơi ánh sáng trong rừng", arc25a_vlbl2:"▶ Video biểu diễn đầy đủ", arc25a_vcap2:"Toàn bộ video buổi biểu diễn",
+                arc25b_tag:"🏆 2025 Art31 Hwaseong — Tác phẩm được chọn", arc25b_title:"Adan, Trí tuệ chung sống", arc25b_subtitle:"Adan, The Wisdom of Coexistence",
+                arc25b_date:"7 – 8 tháng 8, 2025", arc25b_loc:"Nhà thi đấu Songrin Eumter, Hwaseong, Gyeonggi", arc25b_target:"Học sinh tiểu học lớp 1 – 4", arc25b_type:"Biểu diễn tương tác + Triển lãm trải nghiệm",
+                arc25b_desc:"Buổi biểu diễn và triển lãm tương tác, nơi khán giả tiểu học trở thành một phần của câu chuyện Adan, trong những cảnh ánh sáng được tạo bởi gobo thủy tinh và phép chiếu bóng. Các em trải nghiệm bằng cơ thể rằng 'những lỗ thủng' không phải khiếm khuyết mà là kênh để chung sống.",
+                arc25b_drive:"📂 Lưu trữ ảnh biểu diễn & triển lãm", arc25b_vlbl1:"▶ Biểu diễn tương tác", arc25b_vcap1:"Câu chuyện Adan dệt bằng ánh sáng và bóng", arc25b_vlbl2:"▶ Triển lãm trải nghiệm", arc25b_vcap2:"Khán giả bước vào thế giới Adan",
+                arc26_title:"Dự án Ánh sáng & Hình bóng 〈Hai Mỏ Neo Double Anchors〉",
+                arc26_desc:"Lời tự thú cá nhân → Trò chơi trong rừng → Câu chuyện trên sân khấu.<br>Chiếc lá thủng lỗ của nghệ sĩ năm 2024 đã trưởng thành thành <strong>sân khấu của thanh thiếu niên có nền tảng nhập cư ở Ansan</strong> vào năm 2026.",
                 sec_faq:"Câu hỏi thường gặp",
                 fq1_q:"Không biết tiếng Hàn có tham gia được không?", fq1_a:"Có! Chúng tôi tập trung vào biểu cảm không lời.",
                 fq2_q:"Có mất phí không?", fq2_a:"Không, hoàn toàn miễn phí.",
