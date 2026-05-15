@@ -1177,23 +1177,67 @@
             if (arrow) arrow.textContent = item.classList.contains('active') ? '▲' : '▼';
         }
 
-        // ─── 아카이브 영상 클릭 → YouTube iframe 인라인 재생 ──────────
-        // 정적 썸네일 대신 YouTube 임베드 플레이어를 즉시 로드 (autoplay)
-        // YouTube 비공개/제한 영상은 썸네일 404가 발생해도 iframe 플레이어는 정상 작동
-        function playYT(event, anchor) {
+        // ─── 아카이브 영상: 자동 로드 + 음소거 자동재생 + 루프 ──────────
+        // 모든 영상을 YouTube iframe 플레이어로 교체 — 클릭 없이도 창 안에서 재생됨
+        // (autoplay=1 + mute=1: 모던 브라우저 자동재생 정책 준수)
+        // (loop=1 + playlist=ID: 단일 영상 루프 재생을 위해 YouTube가 요구하는 형식)
+        // YouTube 비공개/썸네일 누락 영상도 임베드 플레이어는 정상 작동
+        function embedYTPlayer(anchor, opts) {
+            opts = opts || {};
             const m = anchor.href.match(/(?:youtu\.be\/|v=)([A-Za-z0-9_-]{11})/);
-            if (!m) return true;  // ID 파싱 실패 시 일반 링크 동작 fallback
-            if (anchor.dataset.played === '1') return true; // 이미 플레이어로 교체된 상태
-            event.preventDefault();
+            if (!m) return false;
+            if (anchor.dataset.played === '1') return true;
             const vid = m[1];
             const thumb = anchor.querySelector('.v-thumb');
-            if (!thumb) return true;
-            thumb.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + vid +
-                '?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" ' +
-                'allowfullscreen style="border:0;width:100%;height:100%;display:block;"></iframe>';
+            if (!thumb) return false;
+            // autoplay+mute가 기본 (자동재생 정책 통과), 사용자 클릭 호출 시 sound 재생
+            const auto = opts.autoplay !== false;
+            const mute = opts.muted !== false;
+            const params = [
+                'autoplay=' + (auto ? 1 : 0),
+                'mute=' + (mute ? 1 : 0),
+                'loop=1',
+                'playlist=' + vid,
+                'rel=0',
+                'modestbranding=1',
+                'playsinline=1'
+            ].join('&');
+            thumb.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + vid + '?' + params +
+                '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" ' +
+                'allowfullscreen loading="lazy" style="border:0;width:100%;height:100%;display:block;"></iframe>';
             anchor.dataset.played = '1';
+            return true;
+        }
+
+        // 사용자가 미리 클릭한 경우(JS 자동로드 이전): 소리 켠 채로 재생
+        function playYT(event, anchor) {
+            event.preventDefault();
+            embedYTPlayer(anchor, { autoplay: true, muted: false });
             return false;
         }
+
+        // 페이지 로드 후 아카이브 섹션이 뷰포트 근처에 오면 모든 영상 자동 로드
+        function autoloadArchiveVideos() {
+            const anchors = document.querySelectorAll('#archive a[href*="youtu.be"]');
+            anchors.forEach(a => embedYTPlayer(a, { autoplay: true, muted: true }));
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const sec = document.getElementById('archive');
+            if (!sec) return;
+            if ('IntersectionObserver' in window) {
+                const io = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            autoloadArchiveVideos();
+                            io.disconnect();
+                        }
+                    });
+                }, { rootMargin: '300px 0px' });
+                io.observe(sec);
+            } else {
+                autoloadArchiveVideos(); // fallback: 즉시 로드
+            }
+        });
 
         // ─── 5. 카드뉴스 캔버스 드로잉 ──────────────────────────────
         const W=1080, H=1350;
