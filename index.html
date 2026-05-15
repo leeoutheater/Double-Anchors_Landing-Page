@@ -281,118 +281,148 @@
         .image-modal-content { background: transparent; border: none; box-shadow: none; display: flex; flex-direction: column; align-items: center; padding: 0; width: 90%; max-width: 800px; position: relative; margin: auto; }
 
         /* ===========================
-           숲숲학교 협력 프로그램 구역
+           타임라인 공통 스타일
            =========================== */
-        .supsup-wrap {
-            margin-top: 56px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 48px;
+        .tl-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-top: 20px;
         }
-        .supsup-badge-row {
-            display: flex; align-items: center; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;
+        .tl-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 0 20px;
+            margin-bottom: 0;
         }
-        .supsup-badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: rgba(29,158,117,0.15); color: #4ade80;
-            border: 1px solid rgba(29,158,117,0.4);
-            font-size: 0.82rem; font-weight: 700; padding: 5px 14px;
-            border-radius: 30px; letter-spacing: 0.05em;
+        .tl-year-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 4px;
         }
-        .supsup-badge-sub {
-            font-size: 0.82rem; color: var(--text-muted);
+        .tl-year-pill {
+            font-size: 0.72rem; font-weight: 800;
+            padding: 5px 10px; border-radius: 20px;
+            letter-spacing: .06em; white-space: nowrap;
+            flex-shrink: 0;
         }
-        .supsup-card {
-            display: grid; grid-template-columns: 1fr 1fr;
-            border-radius: 20px; overflow: hidden;
-            border: 1px solid rgba(29,158,117,0.25);
-            box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+        .tl-y24  { background: #5c3a80; color: #e9d5ff; }
+        .tl-y25  { background: #0f6e56; color: #a7f3d0; }
+        .tl-y25b { background: #1d4ed8; color: #bfdbfe; }
+        .tl-y26  { background: #b45309; color: var(--point-color); font-size: .68rem; }
+        .tl-line {
+            width: 2px;
+            flex: 1;
+            background: rgba(255,255,255,0.08);
+            margin: 8px 0;
+            min-height: 40px;
+        }
+        .tl-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 24px;
         }
         @media (max-width: 640px) {
-            .supsup-card { grid-template-columns: 1fr; }
+            .tl-item { grid-template-columns: 56px 1fr; gap: 0 12px; }
+            .tl-card { grid-template-columns: 1fr; }
         }
-        .supsup-info {
-            padding: 2.5rem 2rem;
-            background: rgba(29,158,117,0.06);
-            display: flex; flex-direction: column; gap: 1rem;
+        .tl-card-info {
+            padding: 1.8rem 1.6rem;
+            display: flex; flex-direction: column; gap: .9rem;
         }
-        .supsup-year {
-            font-size: 0.75rem; font-weight: 700;
-            color: #4ade80; letter-spacing: 0.08em;
+        .tl-tag {
+            font-size: 0.72rem; font-weight: 700;
+            letter-spacing: .06em; align-self: flex-start;
+            padding: 3px 10px; border-radius: 20px;
         }
-        .supsup-title {
-            font-size: 1.7rem; font-weight: 800;
-            color: var(--text-light); line-height: 1.3; margin: 0;
+        .tl-tag-24  { background: rgba(92,58,128,0.25); color: #c4b5fd; }
+        .tl-tag-25a { background: rgba(15,110,86,0.25); color: #6ee7b7; }
+        .tl-tag-25b { background: rgba(29,78,216,0.25); color: #93c5fd; }
+        .tl-title {
+            font-size: 1.55rem; font-weight: 800;
+            color: var(--text-light); line-height: 1.25; margin: 0;
         }
-        .supsup-title span {
-            display: block; font-size: 0.9rem; font-weight: 400;
-            color: var(--text-muted); margin-top: 5px;
+        .tl-subtitle {
+            font-size: 0.85rem; color: var(--text-muted);
+            margin: -.5rem 0 0;
         }
-        .supsup-meta { display: flex; flex-direction: column; gap: 6px; }
-        .supsup-meta-row {
+        .tl-meta { display: flex; flex-direction: column; gap: 5px; }
+        .tl-meta-row {
             display: flex; align-items: flex-start; gap: 8px;
-            font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;
+            font-size: 0.84rem; color: var(--text-muted); line-height: 1.5;
         }
-        .s-icon { flex-shrink: 0; font-size: 0.95rem; margin-top: 1px; }
-        .supsup-desc {
-            font-size: 0.86rem; color: var(--text-muted); line-height: 1.8;
-            border-top: 1px solid rgba(29,158,117,0.18); padding-top: 1rem;
+        .tl-meta-row span:first-child { flex-shrink: 0; font-size: .88rem; }
+        .tl-desc {
+            font-size: 0.84rem; color: var(--text-muted); line-height: 1.8;
+            border-top: 1px solid rgba(255,255,255,0.07); padding-top: .9rem;
             word-break: keep-all;
         }
-        .supsup-drive-btn {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: rgba(29,158,117,0.12);
-            border: 1px solid rgba(29,158,117,0.35);
-            color: #4ade80; text-decoration: none;
-            font-size: 0.82rem; font-weight: 600;
-            padding: 8px 16px; border-radius: 20px;
-            transition: background .2s, border-color .2s;
-            align-self: flex-start;
+        .tl-btn-row { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tl-drive-btn {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-size: 0.76rem; font-weight: 600;
+            padding: 6px 14px; border-radius: 20px;
+            text-decoration: none;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--text-muted);
+            transition: background .2s, color .2s;
         }
-        .supsup-drive-btn:hover {
-            background: rgba(29,158,117,0.22);
-            border-color: rgba(29,158,117,0.6);
+        .tl-drive-btn:hover { background: rgba(243,198,35,0.12); color: var(--point-color); border-color: rgba(243,198,35,0.3); }
+
+        /* 카드 배경 */
+        .tl-card-24  { background: rgba(92,58,128,0.08); }
+        .tl-card-25a { background: rgba(15,110,86,0.08); }
+        .tl-card-25b { background: rgba(29,78,216,0.08); }
+
+        /* 미디어 영역 */
+        .tl-card-media {
+            background: #0f0f1a;
+            padding: 1.6rem 1.4rem;
+            display: flex; flex-direction: column; gap: .6rem;
+            justify-content: center;
         }
-        .supsup-visual {
-            background: #0a1a12;
-            padding: 2.5rem 2rem;
-            display: flex; flex-direction: column;
-            gap: 1.4rem; justify-content: center;
+        .tl-media-lbl {
+            font-size: 0.7rem; font-weight: 700;
+            color: var(--point-color); letter-spacing: .1em; margin: 0;
         }
-        .supsup-venue-card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(29,158,117,0.2);
-            border-radius: 14px; padding: 1.2rem 1.4rem;
-            display: flex; flex-direction: column; gap: 8px;
-            align-items: flex-start;
+
+        /* 사진 그리드 (나다 NADA) */
+        .tl-photo-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 4px; margin-top: 8px; border-radius: 8px; overflow: hidden;
         }
-        .supsup-venue-img { height: 36px; display: flex; align-items: center; }
-        .supsup-venue-name {
-            font-size: 1rem; font-weight: 700;
-            color: #4ade80; line-height: 1.4; margin: 0;
+        .tl-photo {
+            width: 100%; aspect-ratio: 1/1;
+            object-fit: cover; display: block;
+            transition: transform .35s;
         }
-        .supsup-venue-sub {
-            font-size: 0.76rem; color: #666; line-height: 1.5; margin: 0;
+        .tl-photo-grid a:hover .tl-photo { transform: scale(1.05); }
+        .tl-photo-grid a { display: block; overflow: hidden; }
+
+        /* 2026 연결 카드 */
+        .tl-end { margin-bottom: 0; }
+        .tl-end-card {
+            background: rgba(243,198,35,0.07);
+            border: 1px solid rgba(243,198,35,0.25);
+            border-radius: 16px;
+            padding: 1.6rem 2rem;
+            margin-bottom: 0;
+            align-self: center;
         }
-        .supsup-keyword-list {
-            display: flex; flex-wrap: wrap; gap: 7px;
+        .tl-end-title {
+            font-size: 1.1rem; font-weight: 700;
+            color: var(--point-color); margin-bottom: .6rem;
         }
-        .supsup-kw {
-            background: rgba(29,158,117,0.1);
-            border: 1px solid rgba(29,158,117,0.25);
-            color: #86efac; font-size: 0.74rem;
-            padding: 4px 10px; border-radius: 20px;
+        .tl-end-desc {
+            font-size: 0.9rem; color: var(--text-muted);
+            line-height: 1.85; word-break: keep-all;
         }
-        .supsup-connect-note {
-            background: rgba(255,255,255,0.03);
-            border-left: 3px solid rgba(29,158,117,0.5);
-            border-radius: 0 8px 8px 0;
-            padding: 10px 14px;
-        }
-        .supsup-connect-note p {
-            font-size: 0.82rem; color: var(--text-muted);
-            line-height: 1.8; margin: 0; word-break: keep-all;
-        }
-        .supsup-connect-note strong { color: #4ade80; }
+        .tl-end-desc strong { color: var(--text-light); }
 
         /* 반응형 */
         @media (max-width: 768px) {
@@ -410,9 +440,9 @@
             .partner-sep { display: none; }
             .program-grid { grid-template-columns: 1fr; }
             .curriculum-dl-grid { grid-template-columns: repeat(3, 1fr); }
-            /* 아카이브 섹션 모바일 */
-            #archive .archive-card { grid-template-columns: 1fr; }
             #archive h2.archive-title-main { font-size: 1.8rem; }
+            .tl-item { grid-template-columns: 56px 1fr; gap: 0 10px; }
+            .tl-card { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
             .lang-grid { grid-template-columns: 1fr; }
@@ -604,209 +634,182 @@
         ====================================================== -->
         <section id="archive">
             <div class="archive-header">
-                <div class="archive-badge">⚓ 전작 아카이브</div>
-                <h2 class="archive-title-main">더블앵커의 뿌리,<br>2025년 화성에서 시작됐습니다.</h2>
+                <div class="archive-badge">⚓ 전작 아카이브 2024 – 2025</div>
+                <h2 class="archive-title-main">2026 〈더블앵커〉는<br>2024년 개인전 〈나다 'NADA'〉에서<br>시작됐습니다.</h2>
                 <p class="archive-intro">
-                    더블앵커는 2025년 화성시 선정작 〈아단, 공존의 지혜〉를 이주배경 청소년을 위해 새롭게 각색한 작품입니다.
-                    빛과 그림자로 만드는 공존의 이야기가 어떻게 시작됐는지 확인해 보세요.
+                    구멍 난 잎사귀 아단의 이야기는 2024년 작가의 개인적인 고백에서 시작됐습니다.
+                    숲에서, 무대에서, 그리고 이주배경 청소년들 사이에서 점점 더 넓어진
+                    그 이야기의 여정을 따라가 보세요.
                 </p>
             </div>
 
-            <div class="archive-card">
+            <!-- ======== 타임라인 ======== -->
+            <div class="tl-wrap">
 
-                <!-- 왼쪽: 프로젝트 정보 -->
-                <div class="archive-info">
-                    <span class="archive-year-badge">2025 · 모든예술31 화성 선정작</span>
-
-                    <h3 class="archive-work-title">
-                        아단, 공존의 지혜
-                        <span>Adan, The Wisdom of Coexistence</span>
-                    </h3>
-
-                    <div class="archive-meta-list">
-                        <div class="archive-meta-item">
-                            <span class="m-icon">📅</span>
-                            <span>2025년 8월 7일 ~ 8일 (2일간)</span>
-                        </div>
-                        <div class="archive-meta-item">
-                            <span class="m-icon">📍</span>
-                            <span>경기도 화성시 송린이음터 체육관</span>
-                        </div>
-                        <div class="archive-meta-item">
-                            <span class="m-icon">👶</span>
-                            <span>초등학교 1~4학년 대상</span>
-                        </div>
-                        <div class="archive-meta-item">
-                            <span class="m-icon">🎭</span>
-                            <span>참여형 공연 + 체험 전시</span>
-                        </div>
-                        <div class="archive-meta-item">
-                            <span class="m-icon">✍️</span>
-                            <span>작가·예술강사 우수정 / 제작감독 이태용</span>
-                        </div>
+                <!-- ── 2024 나다 NADA ── -->
+                <div class="tl-item">
+                    <div class="tl-year-col">
+                        <div class="tl-year-pill tl-y24">2024</div>
+                        <div class="tl-line"></div>
                     </div>
-
-                    <p class="archive-desc-text">
-                        덩굴식물 몬스테라 아단소니의 생존방식인 햇빛·바람·빗물의 '나눔'을 통해,
-                        나의 구멍 난 잎이 결핍이 아닌 공존의 통로임을 깨닫는 참여형 공연·전시입니다.
-                        글라스고보와 그림자 투사로 연출된 빛 그림 속에서 초등학생 관객들이
-                        직접 아단의 이야기가 되었습니다.
-                    </p>
-                </div>
-
-                <!-- 오른쪽: 유튜브 영상 썸네일 -->
-                <div class="archive-videos">
-
-                    <div class="video-block">
-                        <p class="video-lbl">▶ 참여공연</p>
-                        <a href="https://youtu.be/9ctJTBCzGW0" target="_blank" rel="noopener">
-                            <div class="v-thumb">
-                                <img
-                                    src="https://img.youtube.com/vi/9ctJTBCzGW0/hqdefault.jpg"
-                                    alt="아단 공존의 지혜 — 참여공연"
-                                    loading="lazy"
-                                />
-                                <div class="v-overlay">
-                                    <div class="v-play">
-                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8 5v14l11-7z"/>
-                                        </svg>
-                                    </div>
-                                </div>
+                    <div class="tl-card tl-card-24">
+                        <div class="tl-card-info">
+                            <p class="tl-tag tl-tag-24">개인전 · 로프트그라운드</p>
+                            <h3 class="tl-title">나다 'NADA'</h3>
+                            <div class="tl-meta">
+                                <div class="tl-meta-row"><span>📅</span><span>2024년 4월 14일 ~ 20일</span></div>
+                                <div class="tl-meta-row"><span>📍</span><span>서울 로프트그라운드(Loft Ground)</span></div>
+                                <div class="tl-meta-row"><span>🎨</span><span>체험전시 · 설치미술 · 빛 그림 조명</span></div>
+                                <div class="tl-meta-row"><span>✍️</span><span>작가 우수정 (아단ADAN 첫 개인전)</span></div>
                             </div>
-                            <p class="v-caption">빛과 그림자로 만드는 아단의 이야기</p>
-                        </a>
-                    </div>
-
-                    <div class="video-block">
-                        <p class="video-lbl">▶ 체험전시</p>
-                        <a href="https://youtu.be/2FCBLyBmqkk" target="_blank" rel="noopener">
-                            <div class="v-thumb">
-                                <img
-                                    src="https://img.youtube.com/vi/2FCBLyBmqkk/hqdefault.jpg"
-                                    alt="아단 공존의 지혜 — 체험전시"
-                                    loading="lazy"
-                                />
-                                <div class="v-overlay">
-                                    <div class="v-play">
-                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8 5v14l11-7z"/>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="v-caption">관객이 직접 아단의 세계로</p>
-                        </a>
-                    </div>
-
-                </div>
-            </div><!-- /.archive-card -->
-
-            <!-- 연결 메시지 -->
-            <div class="archive-connect">
-                <span class="a-arrow">↓</span>
-                <p>
-                    〈아단, 공존의 지혜〉의 '공존' 메시지가<br>
-                    <strong>2026년 안산의 이주배경 청소년</strong>을 만나<br>
-                    빛 그림 프로젝트 〈더블앵커 Double Anchors〉로 새롭게 태어났습니다.
-                </p>
-            </div>
-
-            <!-- =====================================================
-                 숲숲학교 협력 프로그램 구역
-            ====================================================== -->
-            <div class="supsup-wrap">
-
-                <div class="supsup-badge-row">
-                    <span class="supsup-badge">🌿 협력 프로그램</span>
-                    <span class="supsup-badge-sub">경기상상캠퍼스 숲숲학교 · 2025</span>
-                </div>
-
-                <div class="supsup-card">
-
-                    <!-- 왼쪽: 정보 -->
-                    <div class="supsup-info">
-                        <p class="supsup-year">2025 · 경기문화재단 경기상상캠퍼스 숲숲학교 협력단체</p>
-
-                        <h3 class="supsup-title">
-                            송송뽕뽕 구멍난 아단
-                            <span>아단과 함께하는 빛 그림 놀이</span>
-                        </h3>
-
-                        <div class="supsup-meta">
-                            <div class="supsup-meta-row">
-                                <span class="s-icon">📅</span>
-                                <span>2025년 6월 ~ 11월 (숲숲학교 시즌 운영)</span>
-                            </div>
-                            <div class="supsup-meta-row">
-                                <span class="s-icon">📍</span>
-                                <span>경기도 수원시 권선구 서둔로 166 경기상상캠퍼스</span>
-                            </div>
-                            <div class="supsup-meta-row">
-                                <span class="s-icon">👶</span>
-                                <span>유아 및 초등학생 가족 대상</span>
-                            </div>
-                            <div class="supsup-meta-row">
-                                <span class="s-icon">🌿</span>
-                                <span>숲 생태 감수성 × 빛 그림 놀이 융합 예술교육</span>
-                            </div>
-                            <div class="supsup-meta-row">
-                                <span class="s-icon">✍️</span>
-                                <span>운영 협력단체 아단ADAN (작가 우수정)</span>
-                            </div>
-                        </div>
-
-                        <p class="supsup-desc">
-                            경기상상캠퍼스의 숲과 자연 공간을 배경으로,
-                            그림동화 아단의 '구멍 난 잎'을 주제로 한 빛 그림 체험 놀이입니다.
-                            글라스고보와 빛 투사 재료로 나만의 빛 그림을 만들고,
-                            숲 속에서 아단의 이야기를 몸과 빛으로 직접 체험합니다.
-                            '송송뽕뽕 구멍'이 결핍이 아닌 빛을 나누는 통로임을
-                            어린이들이 놀이 속에서 자연스럽게 발견하는 프로그램입니다.
-                        </p>
-
-                        <a class="supsup-drive-btn"
-                           href="https://drive.google.com/drive/folders/1ER-4A0KXIiDLdHOGC2wWtKuhd8-Ck1e_"
-                           target="_blank" rel="noopener">
-                            📂 프로그램 사진 아카이브 보기 (Google Drive)
-                        </a>
-                    </div>
-
-                    <!-- 오른쪽: 캠퍼스 & 프로그램 시각 정보 -->
-                    <div class="supsup-visual">
-                        <div class="supsup-venue-card">
-                            <div class="supsup-venue-img">
-                                <img
-                                    src="https://sscampus.ggcf.kr/userContent/images/common/logo_sscam.png"
-                                    alt="경기상상캠퍼스"
-                                    style="max-width:140px; filter:brightness(0) invert(1); opacity:.7;"
-                                    loading="lazy"
-                                />
-                            </div>
-                            <p class="supsup-venue-name">경기상상캠퍼스<br>숲숲학교</p>
-                            <p class="supsup-venue-sub">경기문화재단 운영<br>수원시 권선구 서둔로 166</p>
-                        </div>
-
-                        <div class="supsup-keyword-list">
-                            <span class="supsup-kw">🌿 생태감수성</span>
-                            <span class="supsup-kw">💡 빛 그림 놀이</span>
-                            <span class="supsup-kw">✂️ 글라스고보 제작</span>
-                            <span class="supsup-kw">🌳 숲 체험 예술교육</span>
-                            <span class="supsup-kw">👪 가족 참여형</span>
-                            <span class="supsup-kw">🎨 비언어 창작</span>
-                        </div>
-
-                        <div class="supsup-connect-note">
-                            <p>
-                                숲 속에서 시작된 '아단의 구멍 이야기'는<br>
-                                무대 위 <strong>그림자극</strong>과<br>
-                                <strong>AI 이미지극</strong>으로 확장됩니다.
+                            <p class="tl-desc">
+                                바닥으로 떨어져 주저앉은 어느 날 만난, 구멍 뚫린 잎사귀 하나.
+                                그 잎이 '나다(NADA)' — '바로 나'임을 발견하는 빛 그림 설치 개인전.
+                                글라스고보와 빛 투사로 연출된 수백 개의 아단 잎 그림자가
+                                관람객의 얼굴과 공간을 덮는 몰입형 체험 전시입니다.
                             </p>
+                            <div class="tl-btn-row">
+                                <a class="tl-drive-btn" href="https://drive.google.com/drive/folders/1zVaXo0Db-JOD9YsBruLBeeOIMqbNIfVv" target="_blank" rel="noopener">📂 전시 사진 아카이브</a>
+                            </div>
+                        </div>
+                        <div class="tl-card-media">
+                            <p class="tl-media-lbl">▶ 전시 영상</p>
+                            <a href="https://youtu.be/2ybWxtEwOCg" target="_blank" rel="noopener">
+                                <div class="v-thumb">
+                                    <img src="https://img.youtube.com/vi/2ybWxtEwOCg/hqdefault.jpg" alt="나다 NADA 전시 영상" loading="lazy"/>
+                                    <div class="v-overlay"><div class="v-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+                                </div>
+                                <p class="v-caption">나다(NADA) — 바로 나의 이야기</p>
+                            </a>
+                            <div class="tl-photo-grid">
+                                <a href="https://drive.google.com/drive/folders/1d2nOr6WA32sZmK01AjjZbgvAQukqJDt7" target="_blank" rel="noopener">
+                                    <img src="https://drive.google.com/thumbnail?id=1u78ixpN4dsYr8-FxR9APjqkS4rF-lbkH&sz=w300" alt="나다 전시사진 1" loading="lazy" class="tl-photo"/>
+                                </a>
+                                <a href="https://drive.google.com/drive/folders/1d2nOr6WA32sZmK01AjjZbgvAQukqJDt7" target="_blank" rel="noopener">
+                                    <img src="https://drive.google.com/thumbnail?id=1uVwV4tTjjLBoChj8EtqtNq0u2Bqo1Mwh&sz=w300" alt="나다 전시사진 2" loading="lazy" class="tl-photo"/>
+                                </a>
+                                <a href="https://drive.google.com/drive/folders/1d2nOr6WA32sZmK01AjjZbgvAQukqJDt7" target="_blank" rel="noopener">
+                                    <img src="https://drive.google.com/thumbnail?id=1MocMkzpsKTzV0coO-qd2iY1n7xoomAA4&sz=w300" alt="나다 전시사진 3" loading="lazy" class="tl-photo"/>
+                                </a>
+                                <a href="https://drive.google.com/drive/folders/1d2nOr6WA32sZmK01AjjZbgvAQukqJDt7" target="_blank" rel="noopener">
+                                    <img src="https://drive.google.com/thumbnail?id=1IrqXb5s7hRCr-gAu1-sn8GJVQRyG_s23&sz=w300" alt="나다 전시사진 4" loading="lazy" class="tl-photo"/>
+                                </a>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                </div><!-- /.supsup-card -->
-            </div><!-- /.supsup-wrap -->
+                <!-- ── 2025-① 송송뽕뽕 구멍난 아단 (숲숲학교) ── -->
+                <div class="tl-item">
+                    <div class="tl-year-col">
+                        <div class="tl-year-pill tl-y25">2025</div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-card tl-card-25a">
+                        <div class="tl-card-info">
+                            <p class="tl-tag tl-tag-25a">🌿 경기상상캠퍼스 숲숲학교 협력단체</p>
+                            <h3 class="tl-title">송송뽕뽕 구멍난 아단</h3>
+                            <p class="tl-subtitle">아단과 함께하는 빛 그림 놀이</p>
+                            <div class="tl-meta">
+                                <div class="tl-meta-row"><span>📅</span><span>2025년 6월 ~ 11월 (숲숲학교 시즌)</span></div>
+                                <div class="tl-meta-row"><span>📍</span><span>경기도 수원시 경기상상캠퍼스</span></div>
+                                <div class="tl-meta-row"><span>👶</span><span>유아·초등학생 가족 대상</span></div>
+                                <div class="tl-meta-row"><span>🌿</span><span>숲 생태감수성 × 빛 그림 놀이 융합 예술교육</span></div>
+                            </div>
+                            <p class="tl-desc">
+                                경기상상캠퍼스의 숲 속에서 아단의 '구멍 난 잎'을 직접 만들고
+                                빛을 통과시키는 체험 예술교육 프로그램.
+                                글라스고보와 OHP 필름으로 나만의 빛 그림을 제작하고,
+                                구멍이 빛을 나누는 통로임을 놀이 속에서 자연스럽게 발견합니다.
+                            </p>
+                            <div class="tl-btn-row">
+                                <a class="tl-drive-btn" href="https://drive.google.com/drive/folders/1ER-4A0KXIiDLdHOGC2wWtKuhd8-Ck1e_" target="_blank" rel="noopener">📂 프로그램 사진 아카이브</a>
+                            </div>
+                        </div>
+                        <div class="tl-card-media">
+                            <p class="tl-media-lbl">▶ 하이라이트</p>
+                            <a href="https://youtu.be/rXC3rcf-xB0" target="_blank" rel="noopener">
+                                <div class="v-thumb">
+                                    <img src="https://img.youtube.com/vi/rXC3rcf-xB0/hqdefault.jpg" alt="송송뽕뽕 하이라이트" loading="lazy"/>
+                                    <div class="v-overlay"><div class="v-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+                                </div>
+                                <p class="v-caption">숲 속 빛 그림 놀이 하이라이트</p>
+                            </a>
+                            <p class="tl-media-lbl" style="margin-top:14px;">▶ 공연발표 풀영상</p>
+                            <a href="https://youtu.be/OdYwTbwq1GM" target="_blank" rel="noopener">
+                                <div class="v-thumb">
+                                    <img src="https://img.youtube.com/vi/OdYwTbwq1GM/hqdefault.jpg" alt="송송뽕뽕 공연발표 풀영상" loading="lazy"/>
+                                    <div class="v-overlay"><div class="v-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+                                </div>
+                                <p class="v-caption">공연발표 전체 영상</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── 2025-② 아단, 공존의 지혜 ── -->
+                <div class="tl-item">
+                    <div class="tl-year-col">
+                        <div class="tl-year-pill tl-y25b">2025</div>
+                        <div class="tl-line"></div>
+                    </div>
+                    <div class="tl-card tl-card-25b">
+                        <div class="tl-card-info">
+                            <p class="tl-tag tl-tag-25b">🏆 2025 모든예술31 화성 선정작</p>
+                            <h3 class="tl-title">아단, 공존의 지혜</h3>
+                            <p class="tl-subtitle">Adan, The Wisdom of Coexistence</p>
+                            <div class="tl-meta">
+                                <div class="tl-meta-row"><span>📅</span><span>2025년 8월 7일 ~ 8일</span></div>
+                                <div class="tl-meta-row"><span>📍</span><span>경기도 화성시 송린이음터 체육관</span></div>
+                                <div class="tl-meta-row"><span>👶</span><span>초등학교 1~4학년 대상</span></div>
+                                <div class="tl-meta-row"><span>🎭</span><span>참여형 공연 + 체험 전시</span></div>
+                            </div>
+                            <p class="tl-desc">
+                                글라스고보와 그림자 투사로 연출된 빛 그림 속에서
+                                초등학생 관객들이 직접 아단의 이야기가 되는 참여형 공연·전시.
+                                '구멍'이 결핍이 아닌 공존의 통로임을 아이들이 몸으로 체험합니다.
+                            </p>
+                            <div class="tl-btn-row">
+                                <a class="tl-drive-btn" href="https://drive.google.com/drive/folders/1SY20EubrJtpqSrOPlDgtCvway4aZ5Tm8" target="_blank" rel="noopener">📂 공연·전시 사진 아카이브</a>
+                            </div>
+                        </div>
+                        <div class="tl-card-media">
+                            <p class="tl-media-lbl">▶ 참여공연</p>
+                            <a href="https://youtu.be/9ctJTBCzGW0" target="_blank" rel="noopener">
+                                <div class="v-thumb">
+                                    <img src="https://img.youtube.com/vi/9ctJTBCzGW0/hqdefault.jpg" alt="아단 공존의 지혜 — 참여공연" loading="lazy"/>
+                                    <div class="v-overlay"><div class="v-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+                                </div>
+                                <p class="v-caption">빛과 그림자로 만드는 아단의 이야기</p>
+                            </a>
+                            <p class="tl-media-lbl" style="margin-top:14px;">▶ 체험전시</p>
+                            <a href="https://youtu.be/2FCBLyBmqkk" target="_blank" rel="noopener">
+                                <div class="v-thumb">
+                                    <img src="https://img.youtube.com/vi/2FCBLyBmqkk/hqdefault.jpg" alt="아단 공존의 지혜 — 체험전시" loading="lazy"/>
+                                    <div class="v-overlay"><div class="v-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+                                </div>
+                                <p class="v-caption">관객이 직접 아단의 세계로</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── 2026 연결 화살표 ── -->
+                <div class="tl-item tl-end">
+                    <div class="tl-year-col">
+                        <div class="tl-year-pill tl-y26">2026 →</div>
+                    </div>
+                    <div class="tl-end-card">
+                        <p class="tl-end-title">빛 그림 프로젝트 〈더블앵커 Double Anchors〉</p>
+                        <p class="tl-end-desc">
+                            개인의 고백 → 숲의 놀이 → 무대의 이야기.<br>
+                            2024년 작가의 구멍 난 잎이 2026년
+                            <strong>안산의 이주배경 청소년들의 무대</strong>로 자랐습니다.
+                        </p>
+                    </div>
+                </div>
+
+            </div><!-- /.tl-wrap -->
 
         </section>
         <!-- ===== /2025 전작 아카이브 섹션 ===== -->
