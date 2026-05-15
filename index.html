@@ -1177,11 +1177,23 @@
             if (arrow) arrow.textContent = item.classList.contains('active') ? '▲' : '▼';
         }
 
-        // ─── 아카이브 영상: 자동 로드 + 음소거 자동재생 + 루프 ──────────
-        // 모든 영상을 YouTube iframe 플레이어로 교체 — 클릭 없이도 창 안에서 재생됨
-        // (autoplay=1 + mute=1: 모던 브라우저 자동재생 정책 준수)
-        // (loop=1 + playlist=ID: 단일 영상 루프 재생을 위해 YouTube가 요구하는 형식)
-        // YouTube 비공개/썸네일 누락 영상도 임베드 플레이어는 정상 작동
+        // ─── 아카이브 영상: 다중 소스 지원 (HTML5 video / Drive iframe / YouTube) ──
+        // 각 YouTube ID에 대해 대체 소스를 선언하면 우선 적용됨.
+        // 우선순위: directVideo (MP4/WebM 직접) → gdrive (Google Drive preview)
+        //         → youtube (기본 fallback)
+        // AVI 등 브라우저 미지원 포맷도 Google Drive에 업로드 후 gdriveId 지정하면
+        // Drive가 자동 트랜스코딩하여 /preview 임베드로 재생됨.
+        window.ARCHIVE_VIDEOS = {
+            // 'YouTubeID': { mp4Url: 'https://...', gdriveId: 'FILE_ID', poster: 'URL' }
+            'OdYwTbwq1GM': {
+                // 송송뽕뽕 공연발표 풀영상 — 원본 AVI(140MB)를 H.264 MP4(48MB)로 변환 후 GitHub Raw에서 직접 스트리밍
+                // YouTube 임베드 차단 영상이지만 HTML5 video 태그로 같은 자리에서 자동 재생됨
+                mp4Url: 'https://raw.githubusercontent.com/leeoutheater/ADAN_LOGO_TITLE-TITLE-MP4/main/%EC%86%A1%EC%86%A1%EB%BD%95%EB%BD%95_%EA%B5%AC%EB%A9%8D%EB%82%9C_%EC%95%84%EB%8B%A8.mp4'
+            }
+        };
+
+        // 모든 영상을 적절한 플레이어로 교체 — 클릭 없이도 창 안에서 재생됨
+        // (autoplay+mute: 자동재생 정책 준수, loop: 무한 루프)
         function embedYTPlayer(anchor, opts) {
             opts = opts || {};
             const m = anchor.href.match(/(?:youtu\.be\/|v=)([A-Za-z0-9_-]{11})/);
@@ -1190,9 +1202,40 @@
             const vid = m[1];
             const thumb = anchor.querySelector('.v-thumb');
             if (!thumb) return false;
-            // autoplay+mute가 기본 (자동재생 정책 통과), 사용자 클릭 호출 시 sound 재생
+
             const auto = opts.autoplay !== false;
             const mute = opts.muted !== false;
+            const cfg = (window.ARCHIVE_VIDEOS && window.ARCHIVE_VIDEOS[vid]) || {};
+
+            // ① HTML5 video — MP4/WebM 직접 재생 (가장 빠르고 자유로움)
+            if (cfg.mp4Url) {
+                const v = document.createElement('video');
+                v.src = cfg.mp4Url;
+                v.controls = true;
+                v.loop = true;
+                v.playsInline = true;
+                if (mute) v.muted = true;
+                if (auto) v.autoplay = true;
+                v.preload = 'metadata';
+                if (cfg.poster) v.poster = cfg.poster;
+                v.style.cssText = 'width:100%;height:100%;display:block;object-fit:cover;background:#000';
+                thumb.innerHTML = '';
+                thumb.appendChild(v);
+                anchor.dataset.played = '1';
+                return true;
+            }
+
+            // ② Google Drive 임베드 — AVI 등 미지원 포맷도 Drive가 자동 트랜스코딩
+            if (cfg.gdriveId) {
+                thumb.innerHTML =
+                    '<iframe src="https://drive.google.com/file/d/' + cfg.gdriveId + '/preview" ' +
+                    'allow="autoplay; encrypted-media; fullscreen" allowfullscreen ' +
+                    'loading="lazy" style="border:0;width:100%;height:100%;display:block;"></iframe>';
+                anchor.dataset.played = '1';
+                return true;
+            }
+
+            // ③ YouTube 임베드 (기본 fallback)
             const params = [
                 'autoplay=' + (auto ? 1 : 0),
                 'mute=' + (mute ? 1 : 0),
