@@ -67,6 +67,13 @@ reports/(일일보고·회의록)
 - **다음 액션:** ① 홈페이지 IA·와이어프레임 ② 의향서·세그먼트 설문 문항 ③ 시연
   임베드+Brep데모(Compute) ④ 기술스택 결정(D39).
 
+## 6.5 크로스-OS 데이터 허브 ([21])
+- **텍스트(문서·결정·코드)=GitHub**, **대용량 자산(.3dm 등)=Google Drive 허브**,
+  **맥락(HANDOFF·DECISIONS)=Git 주 + Drive 미러**.
+- Drive 허브: `가상공연제작_플랫폼/VPP_HUB/{00_CONTEXT,10_ASSETS,20_PLAN_MIRROR,30_WORKING_<OS>}`.
+- 기기별: Win/Mac=Google Drive for Desktop, Linux=rclone. Git은 전 OS clone.
+- 작업: pull→Drive동기화확인→HANDOFF읽기 / 종료 시 push+HANDOFF·DECISIONS 갱신+Drive 미러.
+
 ## 7. ⏳ 살아있는 리마인더 (놓치면 안 됨)
 - **D24 레퍼런스 공연(창시자 창작)**: 추후 전달 예정 → **온보딩/예술가 입구·매뉴얼
   착수 시 반드시 재문의.**
