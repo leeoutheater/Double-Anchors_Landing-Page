@@ -516,8 +516,9 @@
                     <span class="partner-item" style="color: var(--point-color);" data-i18n="p5">2026 모든예술31 선정작</span>
                 </div>
                 <div class="partners-logo-strip">
-                    <img src="https://raw.githubusercontent.com/leeoutheater/ADAN_LOGO_TITLE-TITLE-MP4/main/Logos_Text.jpg"
+                    <img src="https://raw.githubusercontent.com/leeoutheater/Double-Anchors_Landing-Page/main/assets/logo_partners.jpg"
                          alt="제작지원: 경기도·경기문화재단·안산문화재단·안산시청소년재단 진로체험지원센터 / 주관·주최: 아단ADAN"
+                         loading="lazy"
                          style="width:100%;height:auto;display:block;">
                 </div>
             </div>
@@ -528,7 +529,7 @@
             <div class="about-video-full">
                 <div class="about-video-wrap" id="aboutVideoWrap" onclick="toggleAboutVideo()">
                     <video id="aboutVideo" preload="metadata" playsinline
-                        src="https://raw.githubusercontent.com/leeoutheater/ADAN_LOGO_TITLE-TITLE-MP4/main/%EC%95%84%EB%8B%A8_%EB%8D%94%EB%B8%94%EC%95%B5%EC%BB%A4_%EC%98%81%EC%83%81%ED%8E%B8%EC%A7%91.mp4">
+                        src="https://raw.githubusercontent.com/leeoutheater/Double-Anchors_Landing-Page/main/assets/about_intro.mp4">
                     </video>
                     <div class="about-play-btn">
                         <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
@@ -1183,13 +1184,16 @@
         //         → youtube (기본 fallback)
         // AVI 등 브라우저 미지원 포맷도 Google Drive에 업로드 후 gdriveId 지정하면
         // Drive가 자동 트랜스코딩하여 /preview 임베드로 재생됨.
+        // 아카이브 5개 영상 전부 자체 호스팅 MP4 (랜딩 저장소 assets/)
+        // → 로컬 file://·라이브 사이트 모두 작동, YouTube 임베드 차단/비공개 영향 없음
+        const _AV = 'https://raw.githubusercontent.com/leeoutheater/Double-Anchors_Landing-Page/main/assets/';
         window.ARCHIVE_VIDEOS = {
-            // 'YouTubeID': { mp4Url: 'https://...', gdriveId: 'FILE_ID', poster: 'URL' }
-            'OdYwTbwq1GM': {
-                // 송송뽕뽕 공연발표 풀영상 — 원본 AVI(140MB)를 H.264 MP4(48MB)로 변환 후 GitHub Raw에서 직접 스트리밍
-                // YouTube 임베드 차단 영상이지만 HTML5 video 태그로 같은 자리에서 자동 재생됨
-                mp4Url: 'https://raw.githubusercontent.com/leeoutheater/ADAN_LOGO_TITLE-TITLE-MP4/main/%EC%86%A1%EC%86%A1%EB%BD%95%EB%BD%95_%EA%B5%AC%EB%A9%8D%EB%82%9C_%EC%95%84%EB%8B%A8.mp4'
-            }
+            // 'YouTubeID': { mp4Url: '...' }  — 원본 영상을 H.264 MP4로 변환 후 GitHub Raw 스트리밍
+            '2ybWxtEwOCg': { mp4Url: _AV + 'v_nada_2024.mp4' },        // 2024 나다NADA 전시 영상
+            'rXC3rcf-xB0': { mp4Url: _AV + 'v_forest_highlight.mp4' }, // 2025 숲숲학교 하이라이트
+            'OdYwTbwq1GM': { mp4Url: _AV + 'v_forest_full.mp4' },      // 2025 숲숲학교 공연발표 풀영상
+            '9ctJTBCzGW0': { mp4Url: _AV + 'v_coexist_perform.mp4' },  // 2025 공존의 지혜 참여공연
+            '2FCBLyBmqkk': { mp4Url: _AV + 'v_coexist_exhibit.mp4' }   // 2025 공존의 지혜 체험전시
         };
 
         // 모든 영상을 적절한 플레이어로 교체 — 클릭 없이도 창 안에서 재생됨
