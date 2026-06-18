@@ -1225,6 +1225,7 @@
                 v.style.cssText = 'width:100%;height:100%;display:block;object-fit:cover;background:#000';
                 thumb.innerHTML = '';
                 thumb.appendChild(v);
+                anchor._videoEl = v;          // 뷰포트 관찰자가 재생/일시정지 제어
                 anchor.dataset.played = '1';
                 return true;
             }
@@ -1263,27 +1264,29 @@
             return false;
         }
 
-        // 페이지 로드 후 아카이브 섹션이 뷰포트 근처에 오면 모든 영상 자동 로드
+        // 호환용: IntersectionObserver 미지원 환경에서 전체 즉시 로드
         function autoloadArchiveVideos() {
-            const anchors = document.querySelectorAll('#archive a[href*="youtu.be"]');
-            anchors.forEach(a => embedYTPlayer(a, { autoplay: true, muted: true }));
+            document.querySelectorAll('#archive a[href*="youtu.be"]').forEach(a => embedYTPlayer(a, { autoplay: true, muted: true }));
         }
+        // 각 영상이 화면에 들어올 때만 로드·재생, 벗어나면 일시정지 (대역폭·CPU 절약)
         document.addEventListener('DOMContentLoaded', function() {
-            const sec = document.getElementById('archive');
-            if (!sec) return;
-            if ('IntersectionObserver' in window) {
-                const io = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            autoloadArchiveVideos();
-                            io.disconnect();
-                        }
-                    });
-                }, { rootMargin: '300px 0px' });
-                io.observe(sec);
-            } else {
-                autoloadArchiveVideos(); // fallback: 즉시 로드
-            }
+            const anchors = [...document.querySelectorAll('#archive a[href*="youtu.be"]')];
+            if (!anchors.length) return;
+            if (!('IntersectionObserver' in window)) { autoloadArchiveVideos(); return; }
+            const io = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    const a = entry.target;
+                    if (entry.isIntersecting) {
+                        if (a.dataset.played !== '1') embedYTPlayer(a, { autoplay: true, muted: true });
+                        const v = a._videoEl;
+                        if (v && v.paused) v.play().catch(function(){});
+                    } else {
+                        const v = a._videoEl;
+                        if (v && !v.paused) v.pause();
+                    }
+                });
+            }, { rootMargin: '150px 0px', threshold: 0.25 });
+            anchors.forEach(a => io.observe(a));
         });
 
         // ─── 5. 카드뉴스 캔버스 드로잉 ──────────────────────────────
